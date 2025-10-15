@@ -1,13 +1,17 @@
-MATA KULIAH: MACHINE LEARNING
-DOSEN: ZURNAN ALFIAN S.Kom., M.Kom.
+- MATA KULIAH: MACHINE LEARNING
+- DOSEN: ZURNAN ALFIAN S.Kom., M.Kom.
+  
+---
 
-NAMA: M. FIKRI AVISHENA PARINDURI
-NIM: 231011401029
-KELAS: 05TPLE016
+- NAMA: M. FIKRI AVISHENA PARINDURI
+- NIM: 231011401029
+- KELAS: 05TPLE016
 
-============================================
+---
 
 create your local environment first
+
+```
 1. run in terminal:
     "python -m venv venv"
     then enter
@@ -21,5 +25,6 @@ create your local environment first
 3. run in terminal:
     "pip install pandas numpy scikit-learn matplotlib seaborn joblib flask"
     let it install
+```
 
 then you can run any file you want
