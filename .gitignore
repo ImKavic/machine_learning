@@ -1,0 +1,30 @@
+# Virtual Environment
+venv/
+.venv/
+env/
+
+# Python compiled objects
+__pycache__/
+*.pyc
+*.$py.class
+
+# Dependency files
+pip-log.txt
+pip-log.log
+
+# Logs and databases
+*.log
+*.sqlite
+*.db
+
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# Editor/IDE files (Visual Studio Code)
+.vscode/
+
+# Other temporary or output files
+*.zip
+*.tar.gz
+*.tmp

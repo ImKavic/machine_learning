@@ -1,0 +1,101 @@
+POST http://127.0.0.1:5000/predict
+Content-Type: application/json
+
+[
+  {
+    "IPK": 3.8,
+    "Jumlah_Absensi": 3,
+    "Waktu_Belajar_Jam": 10,
+    "Lulus": 1
+  },
+  {
+    "IPK": 2.5,
+    "Jumlah_Absensi": 8,
+    "Waktu_Belajar_Jam": 5,
+    "Lulus": 0
+  },
+  {
+    "IPK": 3.4,
+    "Jumlah_Absensi": 4,
+    "Waktu_Belajar_Jam": 7,
+    "Lulus": 1
+  },
+  {
+    "IPK": 2.1,
+    "Jumlah_Absensi": 12,
+    "Waktu_Belajar_Jam": 2,
+    "Lulus": 0
+  },
+  {
+    "IPK": 3.9,
+    "Jumlah_Absensi": 2,
+    "Waktu_Belajar_Jam": 12,
+    "Lulus": 1
+  },
+  {
+    "IPK": 2.8,
+    "Jumlah_Absensi": 6,
+    "Waktu_Belajar_Jam": 4,
+    "Lulus": 0
+  },
+  {
+    "IPK": 3.2,
+    "Jumlah_Absensi": 5,
+    "Waktu_Belajar_Jam": 8,
+    "Lulus": 1
+  },
+  {
+    "IPK": 2.7,
+    "Jumlah_Absensi": 7,
+    "Waktu_Belajar_Jam": 3,
+    "Lulus": 0
+  },
+  {
+    "IPK": 3.6,
+    "Jumlah_Absensi": 4,
+    "Waktu_Belajar_Jam": 9,
+    "Lulus": 1
+  },
+  {
+    "IPK": 2.3,
+    "Jumlah_Absensi": 9,
+    "Waktu_Belajar_Jam": 4,
+    "Lulus": 0
+  },
+  {
+    "IPK": 3.5,
+    "Jumlah_Absensi": 3,
+    "Waktu_Belajar_Jam": 11,
+    "Lulus": 1
+  },
+  {
+    "IPK": 2.4,
+    "Jumlah_Absensi": 10,
+    "Waktu_Belajar_Jam": 3,
+    "Lulus": 0
+  },
+  {
+    "IPK": 3,
+    "Jumlah_Absensi": 6,
+    "Waktu_Belajar_Jam": 7,
+    "Lulus": 1
+  },
+  {
+    "IPK": 2.2,
+    "Jumlah_Absensi": 11,
+    "Waktu_Belajar_Jam": 2,
+    "Lulus": 0
+  },
+  {
+    "IPK": 3.7,
+    "Jumlah_Absensi": 5,
+    "Waktu_Belajar_Jam": 9,
+    "Lulus": 1
+  },
+  {
+    "IPK": 2.6,
+    "Jumlah_Absensi": 8,
+    "Waktu_Belajar_Jam": 4,
+    "Lulus": 0
+  }
+]
