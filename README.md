@@ -23,7 +23,7 @@ create your local environment first
     it will get in to the environment terminal
 
 3. run in terminal:
-    "pip install pandas numpy scikit-learn matplotlib seaborn joblib flask"
+    "pip install pandas numpy scikit-learn matplotlib seaborn joblib flask tensorflow"
     let it install
 ```
 
