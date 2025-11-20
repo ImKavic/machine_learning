@@ -1,17 +1,15 @@
 # ===============================================
-# TUGAS : Machine Learning - Perbandingan 3 Algoritma
-# DATA  : Heart Disease Dataset (heart.csv)
+# KELAS: 05TPLE016
+# KELOMPOK 1
+# TUGAS : Machine Learning - 3 Algoritma
 # ===============================================
-
-import warnings
-warnings.filterwarnings('ignore')
 
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import joblib
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import confusion_matrix, accuracy_score, roc_auc_score, roc_curve
+from sklearn.metrics import confusion_matrix, accuracy_score, roc_auc_score, roc_curve, precision_score, recall_score, f1_score
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
@@ -52,19 +50,30 @@ for nama, model in models.items():
 
     cm = confusion_matrix(y_test, y_pred)
     tn, fp, fn, tp = cm.ravel()
-    
+
     acc = accuracy_score(y_test, y_pred)
     auc = roc_auc_score(y_test, y_prob)
+
+    # === Tambahan: Precision, Recall, F1 ===
+    precision = precision_score(y_test, y_pred)
+    recall = recall_score(y_test, y_pred)
+    f1 = f1_score(y_test, y_pred)
 
     print(f"\n=== {nama} ===")
     print("Confusion Matrix:\n", cm)
     print(f"Accuracy : {acc:.4f}")
+    print(f"Precision: {precision:.4f}")
+    print(f"Recall   : {recall:.4f}")
+    print(f"F1-Score : {f1:.4f}")
     print(f"AUC      : {auc:.4f}")
     print(f"TP={tp}, TN={tn}, FP={fp}, FN={fn}")
 
     hasil.append({
         "Model": nama,
         "Accuracy": acc,
+        "Precision": precision,
+        "Recall": recall,
+        "F1-Score": f1,
         "AUC": auc,
         "TP": tp,
         "TN": tn,
@@ -80,7 +89,11 @@ for nama, model in models.items():
 # ===============================================
 # 3. PILIH MODEL TERBAIK DAN SIMPAN
 # ===============================================
-df_hasil = pd.DataFrame(hasil)[["Model", "Accuracy", "AUC", "TP", "TN", "FP", "FN"]]
+df_hasil = pd.DataFrame(hasil)[[
+    "Model", "Accuracy", "Precision", "Recall", "F1-Score", "AUC",
+    "TP", "TN", "FP", "FN"
+]]
+
 best = max(hasil, key=lambda x: x["Accuracy"])
 best_model = best["Model_Obj"]
 best_name = best["Model"]
@@ -124,7 +137,6 @@ print("\n=== Contoh Prediksi Menggunakan Model ===")
 mdl = joblib.load("kelompok.pkl")
 feature_names = joblib.load("feature_names.pkl")
 
-# Tampilkan nama kolom untuk panduan
 print("Kolom fitur yang digunakan:", feature_names)
 
 print(f"")
@@ -147,7 +159,6 @@ sample = pd.DataFrame([{
     "thal": 3
 }])
 
-# Pastikan urutan kolom sesuai
 sample = sample[feature_names]
 
 pred = int(mdl.predict(sample)[0])
@@ -158,23 +169,24 @@ print(f"Probabilitas risiko: {prob*100:.2f}%")
 
 print(f"")
 
-# Contoh data input manual
+# Contoh data kedua
 print(f"Ini yang berisiko penyakit jantung")
 sample = pd.DataFrame([{
     "age": 38,
-    "sex": 1,       
-    "cp": 2,           
-    "trestbps": 138,   
-    "chol": 175,       
-    "fbs": 0,          
-    "restecg": 1,      
-    "thalach": 1173,    
-    "exang": 0,        
-    "oldpeak": 0,    
-    "slope": 2,        
-    "ca": 4,           
-    "thal": 2          
+    "sex": 1,
+    "cp": 2,
+    "trestbps": 138,
+    "chol": 175,
+    "fbs": 0,
+    "restecg": 1,
+    "thalach": 173,
+    "exang": 0,
+    "oldpeak": 0,
+    "slope": 2,
+    "ca": 4,
+    "thal": 2
 }])
+
 sample = sample[feature_names]
 
 pred = int(mdl.predict(sample)[0])
@@ -188,17 +200,14 @@ print(f"Probabilitas risiko: {prob*100:.2f}%")
 # ===============================================
 print("\n=== Perhitungan TP, TN, FP, FN Manual ===")
 
-# Load ulang dataset dan model
 df = pd.read_csv("heart.csv")
 X = df.drop("target", axis=1)
 y = df["target"]
 
 mdl = joblib.load("kelompok.pkl")
 
-# Prediksi semua data
 y_pred = mdl.predict(X)
 
-# Hitung confusion matrix
 cm = confusion_matrix(y, y_pred)
 tn, fp, fn, tp = cm.ravel()
 
@@ -209,10 +218,8 @@ print(f"False Positive (FP): {fp}")
 print(f"False Negative (FN): {fn}")
 print(f"True Positive (TP): {tp}")
 
-# Simpan hasil manual ke Excel (sheet baru)
 with pd.ExcelWriter("hasil_perbandingan.xlsx", mode="a", engine="openpyxl") as writer:
-    df_cm = pd.DataFrame([[tn, fp, fn, tp]],
-                         columns=["TN", "FP", "FN", "TP"])
+    df_cm = pd.DataFrame([[tn, fp, fn, tp]], columns=["TN", "FP", "FN", "TP"])
     df_cm.to_excel(writer, sheet_name="Confusion_Manual", index=False)
 
 print("Hasil TP, TN, FP, FN disimpan ke sheet 'Confusion_Manual' di hasil_perbandingan.xlsx")
