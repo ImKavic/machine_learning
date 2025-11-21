@@ -198,7 +198,7 @@ print(f"Probabilitas risiko: {prob*100:.2f}%")
 # ===============================================
 # 7. HITUNG TP, TN, FP, FN DARI MODEL DAN DATASET ASLI
 # ===============================================
-print("\n=== Perhitungan TP, TN, FP, FN Manual ===")
+print("\n=== Hasil TP, TN, FP, FN ===")
 
 df = pd.read_csv("heart.csv")
 X = df.drop("target", axis=1)
@@ -220,6 +220,6 @@ print(f"True Positive (TP): {tp}")
 
 with pd.ExcelWriter("hasil_perbandingan.xlsx", mode="a", engine="openpyxl") as writer:
     df_cm = pd.DataFrame([[tn, fp, fn, tp]], columns=["TN", "FP", "FN", "TP"])
-    df_cm.to_excel(writer, sheet_name="Confusion_Manual", index=False)
+    df_cm.to_excel(writer, sheet_name="Confusion_Matrix", index=False)
 
-print("Hasil TP, TN, FP, FN disimpan ke sheet 'Confusion_Manual' di hasil_perbandingan.xlsx")
+print("Hasil TP, TN, FP, FN disimpan ke sheet 'Confusion_Matrix' di hasil_perbandingan.xlsx")
